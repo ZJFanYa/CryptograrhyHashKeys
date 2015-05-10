@@ -92,10 +92,8 @@ int bigNum::getInt()
 }
 
 void bigNum::getRandBigNum(int bitsLen)
-{
+{	
 	srand(time(NULL));
-	
-	bigNum randBigNum;
 	if (!(bitsLen % 32))
 	{
 		bigNumArrSize = bitsLen / 32;
@@ -108,7 +106,12 @@ void bigNum::getRandBigNum(int bitsLen)
 	base = 1000000000;
 	bigNumSign = '+';
 	
+	if(bigNumArr)
+	{
+		delete[] bigNumArr;
+	}
 	bigNumArr = new int[bigNumArrSize];
+	
 	for(int i = 0; i < bigNumArrSize; i++)
 	{
 		bigNumArr[i] = (rand() * rand()) % base + 1;

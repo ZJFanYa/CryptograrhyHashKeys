@@ -144,15 +144,17 @@ def decrypt(message, closeKey, modulo, lenArr): #функция дешифров
 def rsa(plaintext):
     print "Big simple numbers are generated..."
 	
-    firstFact = simpleGen.simpleBigNumGenerate()
-    secFact = simpleGen.simpleBigNumGenerate()
+    bitsLen = 128
+	
+    firstFact = simpleGen.simpleBigNumGenerate(bitsLen)
+    secFact = simpleGen.simpleBigNumGenerate(bitsLen)
 
     print "Simple number are generated successfully!"
 	
     modulo = firstFact * secFact
     fi = (lambda x, y: (x - int1)*(y - int1))(firstFact, secFact)
 
-    openKey, closeKey = euclidExtBin.euclideExtend(fi)
+    openKey, closeKey = euclidExtBin.euclideExtend(fi, bitsLen)
 
     print "Open and close keys are successfully calculated!"    
 

@@ -53,8 +53,8 @@ def algorithm(expoPret, fi):
             C -= A
             D -= B
 
-    d = g * v
-    return d, C, D
+    gcd = g * v
+    return gcd, C, D % fi
 
 def euclideExtend(fi, bitsLen):
     oFlag = True
@@ -71,9 +71,9 @@ def euclideExtend(fi, bitsLen):
 
         simpleEA = False
         while not simpleEA:
-            d, C, D = algorithm(expoPret, fi)
+            gcd, C, D = algorithm(expoPret, fi)
 
-            if ((d != int1) or (((expoPret * (D % fi)) % fi) != int1)):
+            if ((gcd != int1) or (((expoPret * D) % fi) != int1)):
                 expoPret += int1
                 if expoPret >= fi:
                     oFlag = True
